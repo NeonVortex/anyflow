@@ -2,17 +2,16 @@
 #include <QtWidgets/QSystemTrayIcon>
 #include <QtGui/QIcon>
 #include <memory>
-#include "clipboardlistener.h"
+#include "clipboard.h"
+#include "tray.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
+    auto app = QApplication(argc, argv);
+    app.setQuitOnLastWindowClosed(false);
 
-    auto trayIcon = new QSystemTrayIcon(QIcon("tray-red.png"));
-    trayIcon->setVisible(true);
-//    trayIcon->showMessage("test1", "test2", QSystemTrayIcon::Information, 1000);
-
-    ClipboardListener cl;
+    Clipboard cl;
+    Tray tray("tray-red.png", &cl);
 
 /*
     QQmlApplicationEngine engine;
