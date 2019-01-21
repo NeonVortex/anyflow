@@ -1,15 +1,20 @@
 #include <type_traits>
 #include <QMenu>
 #include <QMessageBox>
-#include "tray.h"
-#include "clipboard.h"
 #include <QDebug>
+#include "tray.h"
 
 Tray::Tray(const QString &filename, Clipboard *clipboard):
     clipboard{clipboard},
+    loginForm{new LoginForm()},
     controlActions{},
     dataActions{}
 {
+    auto loginAction = new QAction("Login");
+    connect(loginAction, &QAction::triggered, this, [this](){
+        loginForm->show();
+    });
+
     auto aboutAction = new QAction("About");
 
     auto exitAction = new QAction("Exit");
@@ -17,6 +22,7 @@ Tray::Tray(const QString &filename, Clipboard *clipboard):
         exit(0);
     });
 
+    controlActions.push_back(loginAction);
     controlActions.push_back(aboutAction);
     controlActions.push_back(exitAction);
 
@@ -47,8 +53,7 @@ Tray::Tray(const QString &filename, Clipboard *clipboard):
     });
 }
 
-template<typename T, typename F,
-         typename = std::enable_if<std::is_invocable<F, T>::value>>
+template<typename T, typename F, typename>
 void Tray::updateMenuList(QList<T> dataList, F f)
 {
     auto actions = QList<QAction*>();
