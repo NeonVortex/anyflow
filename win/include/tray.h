@@ -15,11 +15,13 @@ public:
 public:
     template<typename T, typename UnaryFunction>
     void updateMenuList(QList<T> dataList, UnaryFunction f);
+    void show();
 private:
     Clipboard *clipboard;
     QMenu *menu;
-    QList<QAction*> *controlActions;
-    QList<QAction*> *dataActions;
+    QSystemTrayIcon *trayIcon;
+    QList<QAction*> controlActions;
+    QList<QAction*> dataActions;
 };
 
 #endif // TRAY_H

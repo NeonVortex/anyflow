@@ -13,6 +13,8 @@ int main(int argc, char *argv[])
     Clipboard cl;
     Tray tray("tray-red.png", &cl);
 
+    tray.show();
+
 /*
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
