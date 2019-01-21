@@ -13,8 +13,9 @@ public:
     Tray() = delete;
     Tray(const QString &filename, Clipboard *clipboard);
 public:
-    template<typename T, typename UnaryFunction>
-    void updateMenuList(QList<T> dataList, UnaryFunction f);
+    template<typename T, typename F,
+             typename = std::enable_if<std::is_invocable<F, T>::value>>
+    void updateMenuList(QList<T> dataList, F f);
     void show();
 private:
     Clipboard *clipboard;

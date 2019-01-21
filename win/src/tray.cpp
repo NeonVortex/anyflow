@@ -47,11 +47,10 @@ Tray::Tray(const QString &filename, Clipboard *clipboard):
     });
 }
 
-template<typename T, typename UnaryFunction>
-void Tray::updateMenuList(QList<T> dataList, UnaryFunction f)
+template<typename T, typename F,
+         typename = std::enable_if<std::is_invocable<F, T>::value>>
+void Tray::updateMenuList(QList<T> dataList, F f)
 {
-    static_assert(std::is_invocable_r<void, UnaryFunction, T>::value);
-
     auto actions = QList<QAction*>();
     for(auto& item: dataList) {
         auto action = new QAction(item.toString());
