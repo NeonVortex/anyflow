@@ -4,14 +4,17 @@
 #include <memory>
 #include "clipboard.h"
 #include "tray.h"
+#include "remoteservice.h"
 
 int main(int argc, char *argv[])
 {
     auto app = QApplication(argc, argv);
     app.setQuitOnLastWindowClosed(false);
 
-    Clipboard cl;
-    Tray tray("tray-red.png", &cl);
+    auto cl = Clipboard{};
+    auto tray = Tray("tray-red.png", &cl);
+
+    auto service = RemoteService{};
 
     tray.show();
 

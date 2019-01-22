@@ -15,7 +15,7 @@ LoginForm::~LoginForm()
 
 void LoginForm::on_pushButton_clicked()
 {
-
+    ui->label_4->setText("Login...");
 }
 
 #include "moc_loginform.cpp"
