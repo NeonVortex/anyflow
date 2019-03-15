@@ -10,4 +10,4 @@ void Clipboard::copy(QVariant data)
 
 }
 
-#include "moc_clipboard.cpp"
+//#include "moc_clipboard.cpp"
