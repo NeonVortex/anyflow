@@ -4,6 +4,7 @@
 #include <memory>
 #include "clipboard.h"
 #include "tray.h"
+#include "session.h"
 
 int main(int argc, char *argv[])
 {
@@ -11,7 +12,8 @@ int main(int argc, char *argv[])
     app.setQuitOnLastWindowClosed(false);
 
     Clipboard cl;
-    Tray tray("tray-red.png", &cl);
+    Tray tray("tray-red.png", cl);
+    Session session(cl);
 
 /*
     QQmlApplicationEngine engine;

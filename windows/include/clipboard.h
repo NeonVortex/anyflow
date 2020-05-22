@@ -11,7 +11,7 @@ public:
     Clipboard();
     void copy(QVariant);
 signals:
-    void onDataRefresh(QList<QVariant>);
+    void dataRefreshed(QList<QVariant>);
 };
 
 #endif // CLIPBOARD_H
